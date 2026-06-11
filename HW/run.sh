@@ -32,7 +32,24 @@ case "$COMMAND" in
     mkdir -p data
     eval $DOCKER_RUN --rm -v "\"$PROJECT_DIR/data:/data\"" hw3-reporter
     ;;
+  structure)
+    find . -not -path "./.git/*" -print | sort
+    ;;
 
+  clear_data)
+    mkdir -p data
+    rm -f data/*.csv data/*.html
+    ;;
+
+  inside_generator)
+    mkdir -p data
+    eval $DOCKER_RUN --rm -v "\"$PROJECT_DIR/data:/data\"" --entrypoint sh hw3-generator -c "\"ls -la /data\""
+    ;;
+
+  inside_reporter)
+    mkdir -p data
+    MSYS_NO_PATHCONV=1 docker run --rm -v "$PROJECT_DIR/data:/data" hw3-reporter sh -c "ls -la /data"
+    ;;
   *)
     echo "Unknown command: $COMMAND"
     echo "Available commands:"
@@ -41,5 +58,9 @@ case "$COMMAND" in
     echo "  create_local_data"
     echo "  build_reporter"
     echo "  run_reporter"
+    echo "  structure"
+    echo "  clear_data"
+    echo "  inside_generator"
+    echo "  inside_reporter"
     ;;
 esac
