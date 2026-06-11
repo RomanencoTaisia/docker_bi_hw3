@@ -28,5 +28,7 @@ case "$COMMAND" in
     echo "  build_generator"
     echo "  run_generator"
     echo "  create_local_data"
+    echo "  build_reporter"
+    echo "  run_reporter"
     ;;
 esac
