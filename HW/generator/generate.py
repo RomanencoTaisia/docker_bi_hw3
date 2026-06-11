@@ -10,7 +10,7 @@ COLUMNS = ["price", "nights", "rating", "destination"]
 def generate_row():
 
     return {
-        "price": random.randint(100, 2000),
+        "price": random.randint(300, 2500),
         "nights": random.randint(1, 14),
         "rating": round(random.uniform(3.0, 5.0), 1),
         "destination": random.choice(["Moldova", "Romania", "Italy", "Turkey", "Greece"]),
