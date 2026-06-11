@@ -14,7 +14,14 @@ case "$COMMAND" in
     mkdir -p local_data
     python generator/generate.py local_data
     ;;
+  build_reporter)
+    docker build -t hw3-reporter ./reporter
+    ;;
 
+  run_reporter)
+    mkdir -p data
+    docker run --rm -v "$(pwd)/data:/data" hw3-reporter
+    ;;
   *)
     echo "Unknown command: $COMMAND"
     echo "Available commands:"
